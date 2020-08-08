@@ -15,13 +15,10 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
 }
 
 .App-link {
@@ -35,4 +32,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+main {
+  flex-grow: 1;
+  text-align: center;
+  padding: 25px;
+}
+footer {
+  padding: 2px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #eeeeee;
+  font-size: small;
+  text-align: center;
+}
+header {
+  padding: 25px;
 }
