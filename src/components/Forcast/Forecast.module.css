@@ -28,3 +28,8 @@
   cursor: pointer;
   margin: 5px auto;
 }
+.Wrapper {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}

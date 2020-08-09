@@ -1,8 +1,9 @@
 import React from "react";
+import classes from "../Forcast/Forecast.module.css";
 
 const Conditions = (props) => {
   return (
-    <div>
+    <div className={classes.Wrapper}>
       {props.responseObj.cod === 200 ? (
         <div>
           <p>
