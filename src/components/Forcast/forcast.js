@@ -46,7 +46,6 @@ const Forcast = () => {
             name="units"
             checked={unit === "imperial"}
             value="imperial"
-            className={classes.textInput}
             onChange={(e) => setUnit(e.target.value)}
           />
           Fahrenheit
@@ -57,7 +56,6 @@ const Forcast = () => {
             name="units"
             checked={unit === "metric"}
             value="metric"
-            className={classes.textInput}
             onChange={(e) => setUnit(e.target.value)}
           />
           Celcius
