@@ -48,11 +48,11 @@ https://www.w3schools.com/howto/howto_css_loader.asp */
   animation: spin 2s linear infinite;
   margin: 10px auto;
 }
-@keyframes spin {
+/* @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
-}
+} */
