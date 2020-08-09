@@ -5,10 +5,23 @@ import classes from "./Forecast.module.css";
 const Forcast = () => {
   let [city, setCity] = useState("");
   let [unit, setUnit] = useState("imperial");
+  let [error, setError] = useState(false);
+  let [loading, setLoading] = useState(false);
   let [responseObj, setResponseObj] = useState({});
   const uriEncodedCity = encodeURIComponent(city);
   var getForecast = (e) => {
     e.preventDefault();
+    if (city.length === 0) {
+      return setError(true);
+    }
+
+    // Clear state in preparation for new data
+    setError(false);
+    setResponseObj({});
+
+    setLoading(true);
+
+    let uriEncodedCity = encodeURIComponent(city);
     fetch(
       `https://community-open-weather-map.p.rapidapi.com/weather?units=${unit}&q=${uriEncodedCity}`,
       {
@@ -22,11 +35,18 @@ const Forcast = () => {
     )
       .then((response) => response.json())
       .then((response) => {
+        if (response.cod !== 200) {
+          throw new Error();
+        }
         setResponseObj(response);
+        setLoading(false);
       })
       .catch((err) => {
+        setError(true);
+        setLoading(false);
         console.log(err);
       });
+    // setCity("");
   };
   return (
     <div>
@@ -64,7 +84,7 @@ const Forcast = () => {
           Get Forecast
         </button>
       </form>
-      <Conditions responseObj={responseObj} />
+      <Conditions responseObj={responseObj} error={error} loading={loading} />
     </div>
   );
 };

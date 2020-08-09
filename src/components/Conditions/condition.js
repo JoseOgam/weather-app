@@ -4,6 +4,10 @@ import classes from "../Forcast/Forecast.module.css";
 const Conditions = (props) => {
   return (
     <div className={classes.Wrapper}>
+      {props.error && (
+        <small className={classes.Small}>Please enter a valid city.</small>
+      )}
+      {props.loading && <div lassName={classes.Loader}>Loading...</div>}
       {props.responseObj.cod === 200 ? (
         <div>
           <p>
