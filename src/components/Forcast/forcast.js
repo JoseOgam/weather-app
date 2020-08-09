@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import Conditions from "../Conditions/condition";
+import classes from "./Forecast.module.css";
 
 const Forcast = () => {
+  let [city, setCity] = useState("");
+  let [unit, setUnit] = useState("imperial");
   let [responseObj, setResponseObj] = useState({});
-  var getForecast = () => {
+  const uriEncodedCity = encodeURIComponent(city);
+  var getForecast = (e) => {
+    e.preventDefault();
     fetch(
-      "https://community-open-weather-map.p.rapidapi.com/weather?q=kisumu",
+      `https://community-open-weather-map.p.rapidapi.com/weather?units=${unit}&q=${uriEncodedCity}`,
       {
         method: "GET",
         headers: {
@@ -26,8 +31,41 @@ const Forcast = () => {
   return (
     <div>
       <h2>Find Current Weather Conditions</h2>
-
-      <button onClick={getForecast}>Get Forecast</button>
+      <form onSubmit={getForecast}>
+        <input
+          type="text"
+          placeholder="Enter City"
+          maxLength="50"
+          value={city}
+          className={classes.textInput}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <label className={classes.Radio}>
+          <input
+            type="radio"
+            name="units"
+            checked={unit === "imperial"}
+            value="imperial"
+            className={classes.textInput}
+            onChange={(e) => setUnit(e.target.value)}
+          />
+          Fahrenheit
+        </label>
+        <label className={classes.Radio}>
+          <input
+            type="radio"
+            name="units"
+            checked={unit === "metric"}
+            value="metric"
+            className={classes.textInput}
+            onChange={(e) => setUnit(e.target.value)}
+          />
+          Celcius
+        </label>
+        <button className={classes.Button} type="submit">
+          Get Forecast
+        </button>
+      </form>
       <Conditions responseObj={responseObj} />
     </div>
   );
